@@ -5,7 +5,7 @@ from PIL import Image
 import os
 import numpy as np
 
-# データセットクラス（ラベルを含む）
+# Dataset Class（ラベルを含む）
 class CustomDataset(Dataset):
     def __init__(self, root_dir, transform=None):
         self.root_dir = root_dir
@@ -13,13 +13,13 @@ class CustomDataset(Dataset):
         self.images = []
         self.labels = []
 
-        # 良品の画像を読み込み
+        # acceptable data. you can modify as your directory良品の画像を読み込み
         pass_dir = os.path.join(root_dir, 'pass')
         for img_name in os.listdir(pass_dir):
             self.images.append(os.path.join(pass_dir, img_name))
             self.labels.append(0)  # 良品は0
 
-        # 不良品の画像を読み込み
+        # defective data. you can modify as your directory不良品の画像を読み込み
         defect_dir = os.path.join(root_dir, 'defect')
         for img_name in os.listdir(defect_dir):
             self.images.append(os.path.join(defect_dir, img_name))
@@ -72,13 +72,13 @@ def main():
     num_ftrs = model.fc.in_features
     model.fc = torch.nn.Linear(num_ftrs, 2)
 
-    # 学習済みのモデルの重みをロード
+    # Loading trained model
     model.load_state_dict(torch.load('model.pth', map_location=device))
 
-    # デバイスにモデルを移動
+    # model transfer to device(GPU)
     model.to(device)
 
-    # バリデーションを実行
+    # execute validation
     validate(model, dataloader, device)
 
 
