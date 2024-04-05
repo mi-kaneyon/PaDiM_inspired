@@ -1,4 +1,5 @@
 # Add modified utility suits
+## Please modify the path of data, model and so on.
 
 # Train/inference scripts
 
