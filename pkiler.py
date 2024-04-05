@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 
-def load_extended_statistics(filename='model_with_stats.pth'):
+def load_extended_statistics(filename='padim_model.pth'):
     """
     'model_with_stats.pth'から拡張統計情報を読み込みます。
     """
